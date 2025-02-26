@@ -30,12 +30,6 @@ jobs:
         printf "%s" "$SSH_PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
 
-        # Debug: Check if key file exists
-        ls -lah private_key.pem
-
-        # Debug: Test SSH connection before running commands
-        ssh -v -o StrictHostKeyChecking=no -i private_key.pem $EC2_USER@$EC2_HOST "echo 'Connected successfully!'"
-
         # Deploy using SSH
         ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_USER@$EC2_HOST << 'EOF'
           set -e  # Exit on any error
