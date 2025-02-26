@@ -12,7 +12,7 @@ export default function Home() {
             <Link href="#pricing" className="text-gray-300 hover:text-white">Pricing</Link>
             <Link href="#contact" className="text-gray-300 hover:text-white">Contact</Link>
           </div>
-          <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+          <button className= "bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
             Get Started
           </button>
         </div>
