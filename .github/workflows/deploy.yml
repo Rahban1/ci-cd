@@ -26,11 +26,14 @@ jobs:
         EC2_HOST: ${{ secrets.EC2_HOST }}
         EC2_PATH: ${{ secrets.EC2_PATH }}
       run: |
-        # Save the SSH key to a file
-        echo "$SSH_PRIVATE_KEY" | tr -d '\r' > private_key.pem
+        # Save the SSH key to a file and remove formatting issues
+        echo "$SSH_PRIVATE_KEY" | sed 's/\\n/\n/g' > private_key.pem
         chmod 600 private_key.pem
 
-        # Deploy using the correct SSH key reference
+        # Test SSH Connection Before Running Deployment
+        ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_USER@$EC2_HOST "echo 'SSH Connection Successful'"
+
+        # Deploy
         ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_USER@$EC2_HOST << EOF
           cd $EC2_PATH
           git pull origin main
