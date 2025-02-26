@@ -20,7 +20,7 @@ jobs:
       run: npm run build
 
     - name: Debug EC2_PATH
-      run: echo "EC2_PATH is: $EC2_PATH"
+      run: echo "EC2_PATH is:$EC2_PATH"
 
     - name: Deploy to EC2
       env:
